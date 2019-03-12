@@ -23,9 +23,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'template')
 SECRET_KEY = 'kl15i_wlcio%#6#%&5g(g*a#%cc3x7=a__wkj%4z&gey66hxt3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ldpfashionshop.herokuapp.com']
 
 
 # Application definition
