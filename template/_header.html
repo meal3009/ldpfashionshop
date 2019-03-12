@@ -1,0 +1,80 @@
+{% load static %}
+<!---------------Start Header------------->
+<header class="header-main">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="fas fa-bars"></span>
+            </button>
+            <div class="logo">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img width="275" height="76" src="{% static 'img/logo.png' %}">
+                </a>
+            </div>
+            <div class="search-search collapse  navbar-collapse">
+                <ul class="ul-search nav navbar-nav">
+                    <li class="nav-item">
+                        <form method="GET" id="form-search" class="form-search navbar-form" action="{% url 'search' %}">
+                            <input type="text" id="search" class="search" name="search" value="{{request.GET.search}}" placeholder="ค้นหา…">
+                            <button type="submit" class="button-search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+    <div class="header-bottom wide-nav navbar-expand-md ">
+        <div class="collapse navbar-collapse">
+            <div class="flex-row container">
+                <div class="flex-col flex-left hide-for-medium">
+                    <ul class="nav header-bottom-nav nav-pills nav-left nav-uppercase" role="tablist">
+                        <li id="menu-item"
+                        {% if '/' == request.path %}    
+                            class="menu-item active"
+                        {% else %}
+                            class="menu-item"
+                        {% endif %}>
+                            <a href="{% url 'index' %}" class="nav-top-link">HOME</a>
+                        </li>
+                        <li id="menu-item" 
+                        {% if 'outer' in request.path %}
+                            class="menu-item active"
+                        {% else %}
+                            class="menu-item"
+                        {% endif %}>
+                                <a href="{% url 'outer' %}" class="nav-top-link">OUTER</a>
+                        </li>
+                        <li id="menu-item" 
+                        {% if 'top' in request.path %}
+                            class="menu-item active"
+                        {% else %}
+                            class="menu-item"
+                        {% endif %}>
+                                <a href="{% url 'top' %}" class="nav-top-link">TOP</a>
+                        </li>
+                        <li id="menu-item" 
+                        {% if 'dress' in request.path %}
+                            class="menu-item active"
+                        {% else %}
+                            class="menu-item"
+                        {% endif %}>
+                                <a href="{% url 'dress' %}" class="nav-top-link">DRESS</a>
+                        </li>
+                        <li id="menu-item" 
+                        {% if 'pants' in request.path %}
+                            class="menu-item active"
+                        {% else %}
+                            class="menu-item"
+                        {% endif %}>
+                                <a href="{% url 'pants' %}" class="nav-top-link">PANTS</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!---------------End Header------------->

@@ -1,0 +1,371 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}HOME{% endblock%}
+{% block body %}
+<body class="nav-dropdown-has-arrow" data-spy="scroll" data-target="#navbarResponsive">
+{% endblock%}
+{% block content %}
+<main id="main">
+    <div class="content">
+        <div class="row row-main">
+            <div class="large-12 col">
+                <div class="col-inner">
+                    <div id="car" class="carousel slide" data-ride="carousel" data-interval="3000">
+                            <ol class="carousel-indicators">
+                                <li data-target="#car" data-slide-to="0" class="active"></li>
+                                <li data-target="#car" data-slide-to="1"></li>
+                                <li data-target="#car" data-slide-to="2"></li>
+                                <li data-target="#car" data-slide-to="3"></li>
+                                <li data-target="#car" data-slide-to="4"></li>
+                                <li data-target="#car" data-slide-to="5"></li>
+                            </ol>
+                        {% if banners %}
+                            {% for banner in banners %}
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a href="{{ banner.urls1 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage1.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ banner.urls2 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage2.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ banner.urls3 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage3.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ banner.urls4 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage4.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ banner.urls5 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage5.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="{{ banner.urls6 }}" target="_blank">
+                                            <img class="img-fluid mx-auto d-block" src="{{ banner.bannerimage6.url }}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <a href="#car" class="carousel-control-prev" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a href="#car" class="carousel-control-next" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="vc_row ">
+                        <div class="product-category">
+                            <div class="product-category-inner">
+                                <div class="wpb-wrapper">
+                                    <div class="text_column content_element title-category">
+                                        <div class="wpb-wrapper">
+                                            <p>OUTER</p>
+                                        </div>
+                                    </div>
+                                    <div class="text_column content_element product-all">
+                                        <div class="wpb-wrapper">
+                                            <p>
+                                                <a href="{% url 'outer' %}">ดูทั้งหมด
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% if products1 %}
+                                        {% for products in products1 %}
+                                        <div class="swiper-slide">
+                                            <div class="product-small box">
+                                                <div class="box-image">
+                                                    <div class="image">
+                                                        <a href="{% url 'product' products.id %}">
+                                                            <img width="300" height="300" src="{{ products.image_main.url}}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="box-text">
+                                                    <div class="detailitem-product">
+                                                        <div class="item-product-title">
+                                                            <h4>
+                                                                <a href="{% url 'product' products.id %}">{{ products.name}}</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            {% if products.sale and products.price %}
+                                                                <p class="product-price sale">
+                                                                    ฿ {{ products.sale | intcomma }}
+                                                                    <del>
+                                                                        ฿ {{ products.price | intcomma }}
+                                                                    </del>
+                                                                </p>
+                                                            {% elif products.price %}
+                                                            <p class="product-price">
+                                                                ฿ {{ products.price | intcomma }}
+                                                            </p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="addtocart">
+                                                            <p class="product addtocart-inline">
+                                                                <a href="#" class="addtocart-button">ใส่ตะกร้า</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_row ">
+                        <div class="product-category">
+                            <div class="product-category-inner">
+                                <div class="wpb-wrapper">
+                                    <div class="text_column content_element title-category">
+                                        <div class="wpb-wrapper">
+                                            <p>TOP</p>
+                                        </div>
+                                    </div>
+                                    <div class="text_column content_element product-all">
+                                        <div class="wpb-wrapper">
+                                            <p>
+                                                <a href="{% url 'top' %}">ดูทั้งหมด
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% if products2 %}
+                                        {% for products in products2 %}
+                                        <div class="swiper-slide">
+                                            <div class="product-small box">
+                                                <div class="box-image">
+                                                    <div class="image">
+                                                        <a href="{% url 'product' products.id %}">
+                                                            <img width="300" height="300" src="{{ products.image_main.url}}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="box-text">
+                                                    <div class="detailitem-product">
+                                                        <div class="item-product-title">
+                                                            <h4>
+                                                                <a href="{% url 'product' products.id %}">{{ products.name}}</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            {% if products.sale and products.price %}
+                                                                <p class="product-price sale">
+                                                                    ฿ {{ products.sale | intcomma }}
+                                                                    <del>
+                                                                        ฿ {{ products.price | intcomma }}
+                                                                    </del>
+                                                                </p>
+                                                            {% elif products.price %}
+                                                            <p class="product-price">
+                                                                ฿ {{ products.price | intcomma }}
+                                                            </p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="addtocart">
+                                                            <p class="product addtocart-inline">
+                                                                <a href="#" class="addtocart-button">ใส่ตะกร้า</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_row ">
+                        <div class="product-category">
+                            <div class="product-category-inner">
+                                <div class="wpb-wrapper">
+                                    <div class="text_column content_element title-category">
+                                        <div class="wpb-wrapper">
+                                            <p>DRESS</p>
+                                        </div>
+                                    </div>
+                                    <div class="text_column content_element product-all">
+                                        <div class="wpb-wrapper">
+                                            <p>
+                                                <a href="{% url 'dress' %}">ดูทั้งหมด
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% if products3 %}
+                                        {% for products in products3 %}
+                                        <div class="swiper-slide">
+                                            <div class="product-small box">
+                                                <div class="box-image">
+                                                    <div class="image">
+                                                        <a href="{% url 'product' products.id %}">
+                                                            <img width="300" height="300" src="{{ products.image_main.url}}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="box-text">
+                                                    <div class="detailitem-product">
+                                                        <div class="item-product-title">
+                                                            <h4>
+                                                                <a href="{% url 'product' products.id %}">{{ products.name}}</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            {% if products.sale and products.price %}
+                                                                <p class="product-price sale">
+                                                                    ฿ {{ products.sale | intcomma }}
+                                                                    <del>
+                                                                        ฿ {{ products.price | intcomma }}
+                                                                    </del>
+                                                                </p>
+                                                            {% elif products.price %}
+                                                            <p class="product-price">
+                                                                ฿ {{ products.price | intcomma }}
+                                                            </p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="addtocart">
+                                                            <p class="product addtocart-inline">
+                                                                <a href="#" class="addtocart-button">ใส่ตะกร้า</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_row ">
+                        <div class="product-category">
+                            <div class="product-category-inner">
+                                <div class="wpb-wrapper">
+                                    <div class="text_column content_element title-category">
+                                        <div class="wpb-wrapper">
+                                            <p>PANTS</p>
+                                        </div>
+                                    </div>
+                                    <div class="text_column content_element product-all">
+                                        <div class="wpb-wrapper">
+                                            <p>
+                                                <a href="{% url 'pants' %}">ดูทั้งหมด
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% if products4 %}
+                                        {% for products in products4 %}
+                                        <div class="swiper-slide">
+                                            <div class="product-small box">
+                                                <div class="box-image">
+                                                    <div class="image">
+                                                        <a href="{% url 'product' products.id %}">
+                                                            <img width="300" height="300" src="{{ products.image_main.url}}">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="box-text">
+                                                    <div class="detailitem-product">
+                                                        <div class="item-product-title">
+                                                            <h4>
+                                                                <a href="{% url 'product' products.id %}">{{ products.name}}</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="price">
+                                                            {% if products.sale and products.price %}
+                                                                <p class="product-price sale">
+                                                                    ฿ {{ products.sale | intcomma }}
+                                                                    <del>
+                                                                        ฿ {{ products.price | intcomma }}
+                                                                    </del>
+                                                                </p>
+                                                            {% elif products.price %}
+                                                            <p class="product-price">
+                                                                ฿ {{ products.price | intcomma }}
+                                                            </p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="addtocart">
+                                                            <p class="product addtocart-inline">
+                                                                <a href="#" class="addtocart-button">ใส่ตะกร้า</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

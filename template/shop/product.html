@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}{{ product.name }}{% endblock%}
+{% block body %}
+<body id="wrapper" class="nav-dropdown-has-arrow" data-spy="scroll" data-target="#navbarResponsive">
+{% endblock%}
+
+{% block content %}
+<!---------------Start Main------------->
+<main id="main">
+    <div class="shop-container">
+        <div class="container">
+            <div class="shop-notices-wrapper"></div>
+        </div>
+        <div class="product">
+            <div class="product-container">
+                <div class="product-main">
+                    <div class="row contect-row mb-0">
+                        <div class="product-gallery col">
+                            <div class="product-images">
+                                <div class="carousel carousel-main" data-flickity='{"fullscreen": true, "wrapAround":true, "pageDots": false,"lazyLoad": 1 }'>
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_main.url }}">
+                                    </div>
+                                    {% if product.image_1 %}
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_1.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_2 %}
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_2.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_3 %}
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_3.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_4 %}
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_4.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_5 %}
+                                    <div class="carousel-cell">
+                                        <img width="600" height="600" class="carousel-cell-image" data-flickity-lazyload="{{ product.image_5.url }}">
+                                    </div>
+                                    {% endif %}
+                                    </div>
+                                    
+                                    <div class="carousel carousel-nav"
+                                    data-flickity='{ "asNavFor": ".carousel-main", "contain": true, "pageDots": false }'>
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_main.url }}">
+                                    </div>
+                                    {% if product.image_1 %}
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_1.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_2 %}
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_2.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_3 %}
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_3.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_4 %}
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_4.url }}">
+                                    </div>
+                                    {% endif %}
+                                    {% if product.image_5 %}
+                                    <div class="carousel-cell">
+                                        <img width="100" height="100" src="{{ product.image_5.url }}">
+                                    </div>
+                                    {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="product-info col">
+                            <h1 class="product-title">
+                                {{ product.name }}
+                            </h1>
+                            <div class="is-divider small"></div>
+                            <div class="price-wrapper">
+                                {% if product.sale and product.price %}
+                                    <p class="product-price sale">
+                                    ฿ {{ product.sale | intcomma }}
+                                    <del>
+                                        ฿ {{ product.price | intcomma }}
+                                    </del>
+                                    </p>
+                                {% elif product.price %}
+                                    <p class="product-price">
+                                        ฿ {{ product.price | intcomma }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                            <!--<form class="cart" action="#">
+                                <div class="button-added">
+                                    <input type="button" value="-" class="minus-button is-form">
+                                    <label class="reader-text" for="quantity">จำนวน</label>
+                                    <input type="number" name="quantity" id="quantity" class="input-text" step="1" min="1" max="999" value="1" title="จำนวน" size="4" pattern="[0-9]*" inputmode="numeric">
+                                    <input type="button" value="+" class="plus-button is-form">
+                                </div>
+                                <button type="submit" name="add-to-cart" value="" class="single-cart">ใส่ตะกร้า</button>
+                            </form>-->
+                            <div class="product-sub-description">
+                                <h5>รายละเอียดสินค้า</h5>
+                                <p>{{ product.sub_description }}</p>
+                            </div>
+                            <div class="product-meta">
+                                <span class="sku-wrapper">รหัสสินค้า : 
+                                    <span class="sku">{{ product.code }}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <div class="container">
+                        <div class="tabbed-content container">
+                            <ul class="product-tabs nav tabs">
+                                <li class="description-tab active">
+                                    <a href="#tab-description">รายละเอียด</a>
+                                </li>
+                            </ul>
+                            <div class="tab-panels">
+                                <div class="panel" id="tab-description">
+                                        {{ product.description | linebreaks }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!---------------End Main------------->
+
+{% endblock %}

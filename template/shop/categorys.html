@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+{% if 'outer' in request.path %}    
+Outer
+{% elif 'top' in request.path %}
+Top
+{% elif 'dress' in request.path %}
+Dress
+{% elif 'pants' in request.path %}
+Pants
+{% endif %}
+{% endblock%}
+{% block body %}
+<body id="wrapper" class="nav-dropdown-has-arrow" data-spy="scroll" data-target="#navbarResponsive">
+{% endblock%}
+
+{% block content %}
+<!---------------Start Title inner------------->
+    <div class="title-inner container">
+        <div class="cate-slide"></div>
+    </div>
+    <div class="title-title-category">
+        <div class="title-category-bg">
+            <div class="title-bg" style="height: 173.889px;transform: translate3d(0px, -23.06px, 0px);backface-visibility: hidden;"></div>
+            <div class="title-overlay"></div>
+        </div>
+        <div class="title-inner2 container">
+            <div class="category-title">
+                <h1 class="shop-title">
+                    {% if 'outer' in request.path %}    
+                        Outer
+                    {% elif 'top' in request.path %}
+                        Top
+                    {% elif 'dress' in request.path %}
+                        Dress
+                    {% elif 'pants' in request.path %}
+                        Pants
+                    {% endif %}
+                </h1>
+                <div class="is-large">
+                    <nav class="is-large-title">
+                        <a href="{% url 'index' %}">หน้าหลัก</a>
+                        <span class="divider">
+                            <span class="fas fa-angle-right"></span>
+                        </span>
+                        {% if 'outer' in request.path %}    
+                            Outer
+                        {% elif 'top' in request.path %}
+                            Top
+                        {% elif 'dress' in request.path %}
+                            Dress
+                        {% elif 'pants' in request.path %}
+                            Pants
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+            <!--<div class="category-fitter">
+                <div class="flatsome-category">
+                    <form class="some-category" method="GET">
+                        <select id="orderby" name="orderby" class="orderby" onchange="getSelectValue();">
+                            <option value="datenow">ใหม่ล่าสุด</option>
+                            <option value="price">เรียงตามราคา:ต่ำไปสูง</option>
+                            <option value="price-desc">เรียงตามราคา:สูงไปต่ำ</option>
+                        </select>
+                    </form>
+                </div>
+            </div>-->
+        </div>
+    </div>
+<!---------------End Title inner------------->
+
+<!---------------Start Main------------->
+    <main id="main">
+        <div class="category-row">
+            <div class="large-12 col">
+                <div class="shop-contianer">
+                    <div class="shop-notices-wrapper"></div>
+                    <div class="product">
+                        {% if product %}
+                        {% for products in product%}
+                        <div class="product-small col">
+                            <div class="col-inner">
+                                <div class="product-small-box">
+                                    <div class="box-image">
+                                        <div class="image">
+                                            <a href="{% url 'product' products.id %}">
+                                                <img width="300" height="300" src="{{ products.image_main.url}}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="box-text">
+                                        <div class="detailitem-product">
+                                            <div class="item-product-title">
+                                                <h4>
+                                                    <a href="{% url 'product' products.id %}">{{ products.name }}</a>
+                                                </h4>
+                                            </div>
+                                            <div class="price">
+                                                {% if products.sale and products.price %}
+                                                    <p class="product-price sale">
+                                                        ฿ {{ products.sale | intcomma }}
+                                                        <del>
+                                                            ฿ {{ products.price | intcomma }}
+                                                        </del>
+                                                    </p>
+                                                {% elif products.price %}
+                                                <p class="product-price">
+                                                    ฿ {{ products.price | intcomma }}
+                                                </p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="addtocart">
+                                                <p class="product addtocart-inline">
+                                                    <a href="" class="addtocart-button">ใส่ตะกร้า</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor%}
+                        {% endif %}
+                    </div> 
+                    <div class="row">
+                        <nav class="cat_page mx-auto" aria-label="Page navigation example">
+                            {% if product.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if product.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{product.previous_page_number}}">
+                                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                        </li>
+                                    {% endif %}
+                                    {% for i in product.paginator.page_range %}
+                                        {% if product.number == i %}
+                                            <li class="page-item active">
+                                                <a class="page-link" style="background-color:#00adba">{{i}}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a href="?page={{i}}" class="page-link">{{i}}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if product.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{product.next_page_number}}">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link"><i class="fas fa-angle-right" aria-hidden="true"></i></a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

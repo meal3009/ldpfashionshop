@@ -1,0 +1,44 @@
+{% load static %}
+<!---------------Left Menu------------->
+<div class="menu-category navbar-expand-md">
+    <nav class="uber-menu collapse navbar-collapse">
+        <ul class="uber-menu-nav">
+            <li class="uber-menu-item">
+                <a href="{% url 'index' %}"  {% if '/' == request.path %}    
+                                                class="active"
+                                            {% endif %}>
+                    <span><i class="fas fa-home"></i> HOME </span>
+                </a>
+            </li>
+            <li class="uber-menu-item">
+                <a href="{% url 'outer' %}" {% if 'outer' in request.path %}    
+                                                class="active"
+                                            {% endif %}>
+                    <span><i class="fa fa-heartbeat"></i> OUTER</span>
+                </a>
+            </li>
+            <li class="uber-menu-item">
+                <a href="{% url 'top' %}" {% if 'top' in request.path %}    
+                                                class="active"
+                                            {% endif %}>
+                    <span><i class="fa fa-snowflake"></i> TOP</span>
+                </a>
+            </li>
+            <li class="uber-menu-item">
+                <a href="{% url 'dress' %}" {% if 'dress' in request.path %}    
+                                                class="active"
+                                            {% endif %}>
+                    <span><i class="fa fa-moon"></i> DRESS</span>
+                </a>
+            </li>
+            <li class="uber-menu-item">
+                <a href="{% url 'pants' %}" {% if 'pants' in request.path %}    
+                                                class="active"
+                                            {% endif %}>
+                    <span><i class="fas fa-shopping-bag"></i> PANTS</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!---------------Left Menu------------->
